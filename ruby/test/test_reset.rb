@@ -17,7 +17,7 @@ class TestReset < Minitest::Test
     end
     
     describe "print" do
-      it 'displays the (re)set in the proper format' do
+      it "displays the (re)set in the proper format" do
         assert_equal "{ 1, 3, 5, 7, 9, 11, 13, 15, 17, 19 }", @odds.print
       end
     end
@@ -70,19 +70,19 @@ class TestReset < Minitest::Test
       end
 
       describe "has_subset?" do
-        it 'checks if a given (re)set is a subset of the (re)set' do
+        it "checks if a given (re)set is a subset of the (re)set" do
           assert @test_numbers.has_subset?(@evens)
         end
       end
       
       describe "subset_of?" do
-        it 'checks if the (re)set is a subset of a give (re)set' do
+        it "checks if the (re)set is a subset of a give (re)set" do
           assert @odds.subset_of?(@test_numbers)
         end
       end
 
       describe "union" do
-        it 'create a union of the two (re)sets' do
+        it "create a union of the two (re)sets" do
           expected = Reset.new([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 11, 13, 17, 19])
           single_digits_and_primes = @single_digits.union(@primes)
           assert_equal expected.print, single_digits_and_primes.print
@@ -90,7 +90,7 @@ class TestReset < Minitest::Test
       end
       
       describe "intersection" do  
-        it 'creates an intersection of the two (re)sets' do
+        it "creates an intersection of the two (re)sets" do
           expected = Reset.new([2, 3, 5, 7])
           single_digit_primes = @single_digits.intersection(@primes)
           assert_equal expected.print, single_digit_primes.print
@@ -98,7 +98,7 @@ class TestReset < Minitest::Test
       end
       
       describe "difference" do  
-        it 'gives the difference of the two (re)sets' do
+        it "gives the difference of the two (re)sets" do
           expected = Reset.new([0, 1, 4, 6, 8, 9, 10, 12, 14, 15, 16, 18, 20 ])
           nonprimes = @test_numbers.difference(@primes)
           assert_equal expected.print, nonprimes.print
