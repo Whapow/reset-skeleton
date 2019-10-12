@@ -122,6 +122,14 @@ class TestReset < Minitest::Test
           assert_equal expected.set, single_digits_and_primes.set
           assert_equal expected.print, single_digits_and_primes.print
         end
+
+        it "does not modify the original (re)sets" do
+          expected_odds = @odds.print
+          expected_evens = @evens.print
+          @odds.union(@evens)
+          assert_equal expected_odds, @odds.print
+          assert_equal expected_evens, @evens.print
+      end
       end
       
       describe "intersection" do  

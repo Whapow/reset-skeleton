@@ -37,7 +37,7 @@ class Reset
 
   def union(reset)
     raise ArgumentError.new("Must be a Reset") unless reset.is_a?(Reset)
-    u = @set.to_a
+    u = @set.dup
     reset.set.each do |i|
       u.push(i) unless self.contains?(i)
     end
