@@ -23,6 +23,10 @@ class Reset
     @set.empty?
   end
 
+  def number_of_elements?
+    @set.size
+  end
+
   def union(reset)
     raise ArgumentError.new("Must be a Reset") unless reset.is_a?(Reset)
     u = @set.to_a

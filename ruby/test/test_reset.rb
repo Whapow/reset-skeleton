@@ -43,6 +43,12 @@ class TestReset < Minitest::Test
       end
     end
 
+    describe "number_of_elements?" do
+      it "can return the number of elements" do
+        assert_equal 21, @test_numbers.number_of_elements?
+      end
+    end
+
     describe "multi-set methods" do
 
       it "give an ArgumentError when given a non-set" do
