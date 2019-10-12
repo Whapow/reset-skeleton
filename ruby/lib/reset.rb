@@ -4,11 +4,19 @@ class Reset
   VERSION = '1.0.0'
 
   def initialize(array = [])
-    @set = array.sort.uniq
+    @set = array.uniq
   end
 
   def set
     @set
+  end
+
+  def add(value)
+    @set.push(value) unless @set.include?(value)
+  end
+
+  def remove(value)
+    @set.delete(value) if @set.include?(value)
   end
 
   def print
@@ -23,9 +31,13 @@ class Reset
     @set.empty?
   end
 
+  def number_of_elements?
+    @set.size
+  end
+
   def union(reset)
     raise ArgumentError.new("Must be a Reset") unless reset.is_a?(Reset)
-    u = @set.to_a
+    u = @set.dup
     reset.set.each do |i|
       u.push(i) unless self.contains?(i)
     end
@@ -48,6 +60,13 @@ class Reset
       d.push(i) unless reset.contains?(i)
     end
     Reset.new(d)
+  end
+
+  def symmetric_difference(reset)
+    raise ArgumentError.new("Must be a Reset") unless reset.is_a?(Reset)
+    sd = self.union(reset)
+    sd.set.map{|i| i if reset.contains?(i) && self.contains?(i) }.each { |x| sd.remove(x) }
+    sd
   end
   
   def has_subset?(reset)
