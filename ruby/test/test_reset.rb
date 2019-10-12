@@ -49,6 +49,34 @@ class TestReset < Minitest::Test
       end
     end
 
+    describe "add" do
+      it "adds element to the set" do 
+        flux_numbers = Reset.new([1,3,9,13])
+        flux_numbers.add(4)
+        assert_equal [1,3,9,13,4], flux_numbers.set
+      end
+      
+      it "does not add existing elements to the set" do
+        flux_numbers = Reset.new([1,3,9,13])
+        flux_numbers.add(9)
+        assert_equal [1,3,9,13], flux_numbers.set
+      end
+    end
+
+    describe "remove" do
+      it "does not change the set if the value is not present" do
+        flux_numbers = Reset.new([1,3,9,13])
+        flux_numbers.remove(4)
+        assert_equal [1,3,9,13], flux_numbers.set
+      end
+      
+      it "removes element from the set" do 
+        flux_numbers = Reset.new([1,3,9,13])
+        flux_numbers.remove(1)
+        assert_equal [3,9,13], flux_numbers.set
+      end
+    end
+
     describe "multi-set methods" do
 
       it "give an ArgumentError when given a non-set" do

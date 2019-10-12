@@ -11,6 +11,14 @@ class Reset
     @set
   end
 
+  def add(value)
+    @set.push(value) unless @set.include?(value)
+  end
+
+  def remove(value)
+    @set.delete(value) if @set.include?(value)
+  end
+
   def print
     "{ #{@set.join(', ')} }"
   end
