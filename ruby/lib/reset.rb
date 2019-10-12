@@ -61,6 +61,13 @@ class Reset
     end
     Reset.new(d)
   end
+
+  def symmetric_difference(reset)
+    raise ArgumentError.new("Must be a Reset") unless reset.is_a?(Reset)
+    sd = self.union(reset)
+    sd.set.map{|i| i if reset.contains?(i) && self.contains?(i) }.each { |x| sd.remove(x) }
+    sd
+  end
   
   def has_subset?(reset)
     raise ArgumentError.new("Must be a Reset") unless reset.is_a?(Reset)

@@ -129,7 +129,7 @@ class TestReset < Minitest::Test
           @odds.union(@evens)
           assert_equal expected_odds, @odds.print
           assert_equal expected_evens, @evens.print
-      end
+        end
       end
       
       describe "intersection" do  
@@ -147,6 +147,14 @@ class TestReset < Minitest::Test
           nonprimes = @test_numbers.difference(@primes)
           assert_equal expected.set, nonprimes.set
           assert_equal expected.print, nonprimes.print
+        end
+      end
+
+      describe "symmetric_difference" do  
+        it "gives the difference of the two (re)sets" do
+          expected = Reset.new([0, 1, 4, 6, 8, 9, 11, 13, 17, 19])
+          single_digit_xor_prime = @single_digits.symmetric_difference(@primes)
+          assert_equal expected.set, single_digit_xor_prime.set
         end
       end
     end
