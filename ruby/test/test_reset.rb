@@ -13,7 +13,7 @@ class TestReset < Minitest::Test
       @single_digits = Reset.new([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
       @odds = Reset.new([1, 3, 5, 7, 9, 11, 13, 15, 17, 19])
       @evens = Reset.new([2, 4, 6, 8, 10, 12, 14, 16, 18, 20])
-      @primes = Reset.new([2,3,5,7,11,13,17,19])
+      @primes = Reset.new([2, 3, 5, 7, 11, 13, 17, 19])
     end
     
     describe "print" do
@@ -119,6 +119,7 @@ class TestReset < Minitest::Test
         it "create a union of the two (re)sets" do
           expected = Reset.new([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 11, 13, 17, 19])
           single_digits_and_primes = @single_digits.union(@primes)
+          assert_equal expected.set, single_digits_and_primes.set
           assert_equal expected.print, single_digits_and_primes.print
         end
       end
@@ -127,6 +128,7 @@ class TestReset < Minitest::Test
         it "creates an intersection of the two (re)sets" do
           expected = Reset.new([2, 3, 5, 7])
           single_digit_primes = @single_digits.intersection(@primes)
+          assert_equal expected.set, single_digit_primes.set
           assert_equal expected.print, single_digit_primes.print
         end
       end
@@ -135,6 +137,7 @@ class TestReset < Minitest::Test
         it "gives the difference of the two (re)sets" do
           expected = Reset.new([0, 1, 4, 6, 8, 9, 10, 12, 14, 15, 16, 18, 20 ])
           nonprimes = @test_numbers.difference(@primes)
+          assert_equal expected.set, nonprimes.set
           assert_equal expected.print, nonprimes.print
         end
       end

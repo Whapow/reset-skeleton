@@ -4,7 +4,7 @@ class Reset
   VERSION = '1.0.0'
 
   def initialize(array = [])
-    @set = array.sort.uniq
+    @set = array.uniq
   end
 
   def set
